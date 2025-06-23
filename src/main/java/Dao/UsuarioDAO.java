@@ -88,7 +88,7 @@ public class UsuarioDAO {
         try {
 
             connection = Conexion.getConnection();
-            sqlCommand = "";
+            sqlCommand = "sp_EliminarUsuario";
             stmt = connection.prepareStatement(sqlCommand);
             stmt.setInt(1, idUsuario);
             int request = stmt.executeUpdate();
