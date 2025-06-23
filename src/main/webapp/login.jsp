@@ -92,10 +92,17 @@
             <div class="mb-3">
                 <label class="form-label">Código de Seguridad</label>
                 <div class="captcha-container">
-                    <img src="${captchaImage}" alt="CAPTCHA" class="captcha-img">
+                    <c:if test="${not empty captchaImage}">
+                        <img src="${captchaImage}" alt="CAPTCHA" class="captcha-img">
+                    </c:if>
+                    <c:if test="${empty captchaImage}">
+                        <p class="text-danger">No se pudo generar el CAPTCHA</p>
+                    </c:if>
                     <br>
                     <a href="${pageContext.request.contextPath}/login" class="btn-refresh" title="Generar nuevo CAPTCHA">
                         <i class="fas fa-sync-alt"></i>
+                    </a>
+
                     </a>
                 </div>
                 <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Escribe el código de la imagen" required autocomplete="off">

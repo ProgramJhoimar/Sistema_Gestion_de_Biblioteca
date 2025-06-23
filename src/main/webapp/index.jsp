@@ -75,7 +75,7 @@
         <div class="library-title">Bienvenido a la Biblioteca Virtual</div>
         <div class="library-subtitle">Sistema de Gestión de Préstamos y Recursos Bibliográficos</div>
         
-        <a href="<%= request.getContextPath() %>/login" class="btn btn-light btn-login">
+        <a href="<%= request.getContextPath() %>/login.jsp" class="btn btn-light btn-login">
             <i class="fas fa-sign-in-alt me-2"></i> Iniciar Sesión
         </a>
     </div>

@@ -29,7 +29,6 @@ public class UsuarioDAO {
             sqlCommand = "CALL sp_InsertarUsuario(?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sqlCommand);
             stmt.setString(1, usuario.getNombre());
-            stmt.setString(2, usuario.getDocumento());
             stmt.setString(3, usuario.getEmail());
             stmt.setString(4, usuario.getTelefono());
             stmt.setString(5, usuario.getPassword());
@@ -60,9 +59,7 @@ public class UsuarioDAO {
             connection = Conexion.getConnection();
             sqlCommand = "CALL sp_ActualizarUsuario (?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sqlCommand);
-            stmt.setString(1, usuario.getNombre());
-            stmt.setString(2, usuario.getDocumento());
-            stmt.setString(3, usuario.getEmail());
+            stmt.setString(1, usuario.getNombre());stmt.setString(3, usuario.getEmail());
             stmt.setString(4, usuario.getTelefono());
             stmt.setString(5, usuario.getPassword());
             stmt.setInt(6, usuario.getIdUsuario());
@@ -184,7 +181,6 @@ public class UsuarioDAO {
         UsuarioModel usuario = new UsuarioModel();
         usuario.setIdUsuario(rs.getInt("idUsuario"));
         usuario.setNombre(rs.getString("nombre"));
-        usuario.setDocumento(rs.getString("documento"));
         usuario.setEmail(rs.getString("email"));
         usuario.setTelefono(rs.getString("telefono"));
         usuario.setPassword(rs.getString("password"));

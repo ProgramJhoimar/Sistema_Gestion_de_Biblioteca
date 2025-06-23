@@ -15,16 +15,24 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>8.0.0</jakartaee>
     </properties>
-    
+
+
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${jakartaee}</version>
             <scope>provided</scope>
+
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
-    
+
      <build>
         <plugins>
             <plugin>

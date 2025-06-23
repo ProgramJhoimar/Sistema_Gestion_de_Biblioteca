@@ -11,54 +11,33 @@ package Dto;
 public class UsuarioModel {
 
     private int idUsuario;
+    private String perfil;
     private String nombre;
-    private String documento;
+    private String apellido;
     private String telefono;
     private String email;
     private String password;
 
-    public UsuarioModel(int idUsuario, String nombre, String documento, String telefono, String email, String password) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.documento = documento;
-        this.telefono = telefono;
-        this.email = email;
-        this.password = password;
-    }
 
     public UsuarioModel() {
-   }
-    
-    public int getIdUsuario() {
-        return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public UsuarioModel(String password, String email, String telefono, String apellido, String nombre, String perfil, int idUsuario) {
+        this.password = password;
+        this.email = email;
+        this.telefono = telefono;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.perfil = perfil;
         this.idUsuario = idUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPassword() {
+        return password;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -69,15 +48,43 @@ public class UsuarioModel {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
-    
-    
-    
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }
