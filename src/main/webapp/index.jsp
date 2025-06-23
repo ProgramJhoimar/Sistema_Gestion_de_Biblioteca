@@ -60,24 +60,10 @@
             <div>
                 <h1>Bienvenido a la Biblioteca Virtual</h1>
                 <p>Sistema de Gestión de Préstamos y Recursos Bibliográficos</p>
-
-<<<<<<< HEAD
-<!-- Main Content -->
-<div class="main-content">
-    <div>
-        <div class="library-title">Bienvenido a la Biblioteca Virtual</div>
-        <div class="library-subtitle">Sistema de Gestión de Préstamos y Recursos Bibliográficos</div>
-        
-        <a href="<%= request.getContextPath() %>/login.jsp" class="btn btn-light btn-login">
-            <i class="fas fa-sign-in-alt me-2"></i> Iniciar Sesión
-        </a>
-    </div>
-</div>
-=======
                 <a href="<%= request.getContextPath()%>/login" class="btn btn-light btn-login">
                     <i class="fas fa-sign-in-alt me-2"></i> Iniciar Sesión
                 </a>
->>>>>>> main
+
 
                 <a href="<%= request.getContextPath()%>/LibroServlet" class="btn btn-success btn-Disponibles">
                     <i class="fas fa-book-open me-2"></i> Ver Libros Disponibles
