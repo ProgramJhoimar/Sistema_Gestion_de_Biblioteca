@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("usuarioNombre", usuario.getNombre());
             // Redirigir al dashboard
             request.getRequestDispatcher("/Views/dashboard.jsp").forward(request, response);
-            System.out.println("Correcto");
+            
         } else {
             // Login fallido
             request.setAttribute("error", "Credenciales incorrectas");
