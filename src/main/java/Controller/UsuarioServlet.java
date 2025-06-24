@@ -137,7 +137,7 @@ public class UsuarioServlet extends HttpServlet {
         // Crear objeto Usuario
         UsuarioModel usuario = new UsuarioModel();
         usuario.setNombre(nombre);
-        usuario.setEmail(correo);
+        usuario.setCorreo(correo);
         usuario.setTelefono(telefono);
         usuario.setPassword(password);
 

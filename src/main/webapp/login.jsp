@@ -77,7 +77,7 @@
                 <label for="username" class="form-label">Correo o Usuario</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username">
+                    <input type="text" class="form-control" id="correo" name="correo" required autofocus autocomplete="username">
                 </div>
             </div>
 

@@ -13,14 +13,13 @@ public class UsuarioLoginDAO {
     public UsuarioModel validarLogin(String username, String password) {
         UsuarioModel usuario = null;
 
-        String sql = "SELECT * FROM usuarios WHERE (email = ? OR nombre = ?) AND password = ?";
+        String sql = "SELECT * FROM usuarios WHERE correo = ? AND password = ?";
 
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, username); // Puede ser email
-            ps.setString(2, username); // o puede ser nombre
-            ps.setString(3, password); // Verifica que sea igual al de la BD
+            ps.setString(1, username); // username contendrá el correo
+            ps.setString(2, password); // Verifica que sea igual al de la BD
 
             ResultSet rs = ps.executeQuery();
 
@@ -28,11 +27,10 @@ public class UsuarioLoginDAO {
                 usuario = new UsuarioModel();
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setNombre(rs.getString("nombre"));
-                usuario.setApellido(rs.getString("apellido"));
+                usuario.setDocumento(rs.getString("documento"));
                 usuario.setTelefono(rs.getString("telefono"));
-                usuario.setEmail(rs.getString("email"));
+                usuario.setCorreo(rs.getString("correo"));
                 usuario.setPassword(rs.getString("password"));
-                usuario.setPerfil(rs.getString("perfil")); // si tu modelo lo tiene
             } else {
                 System.out.println("⚠ No se encontró ningún usuario con esas credenciales.");
             }
