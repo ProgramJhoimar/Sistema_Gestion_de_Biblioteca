@@ -15,10 +15,13 @@ public class UsuarioLoginDAO {
 
         String sql = "SELECT * FROM usuarios WHERE correo = ? AND password = ?";
 
-        try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
+<<<<<<< HEAD
             ps.setString(1, username); // username contendrá el correo
+=======
+            ps.setString(1, username); // Puede ser email
+>>>>>>> main
             ps.setString(2, password); // Verifica que sea igual al de la BD
 
             ResultSet rs = ps.executeQuery();
@@ -28,9 +31,16 @@ public class UsuarioLoginDAO {
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setDocumento(rs.getString("documento"));
+<<<<<<< HEAD
                 usuario.setTelefono(rs.getString("telefono"));
                 usuario.setCorreo(rs.getString("correo"));
                 usuario.setPassword(rs.getString("password"));
+=======
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setPassword(rs.getString("password"));
+
+>>>>>>> main
             } else {
                 System.out.println("⚠ No se encontró ningún usuario con esas credenciales.");
             }

@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
 
-        String correo = request.getParameter("correo");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         String captchaIngresado = request.getParameter("captcha");
 
@@ -80,8 +80,8 @@ public class LoginServlet extends HttpServlet {
 
         // Validar credenciales
         UsuarioLoginDAO usuarioDAO = new UsuarioLoginDAO();
-        UsuarioModel usuario = usuarioDAO.validarLogin(correo, password);
-        System.out.println("Usuario ingresado: " + correo);
+        UsuarioModel usuario = usuarioDAO.validarLogin(username, password);
+        System.out.println("Usuario ingresado: " + username);
         System.out.println("Contraseña ingresada: " + password);
 
 

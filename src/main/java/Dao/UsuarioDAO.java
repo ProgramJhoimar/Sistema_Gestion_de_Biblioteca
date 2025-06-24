@@ -29,6 +29,10 @@ public class UsuarioDAO {
             sqlCommand = "CALL sp_InsertarUsuario(?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sqlCommand);
             stmt.setString(1, usuario.getNombre());
+<<<<<<< HEAD
+=======
+            stmt.setString(2, usuario.getDocumento());
+>>>>>>> main
             stmt.setString(3, usuario.getCorreo());
             stmt.setString(4, usuario.getTelefono());
             stmt.setString(5, usuario.getPassword());
@@ -59,7 +63,12 @@ public class UsuarioDAO {
             connection = Conexion.getConnection();
             sqlCommand = "CALL sp_ActualizarUsuario (?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sqlCommand);
+<<<<<<< HEAD
             stmt.setString(1, usuario.getNombre());stmt.setString(3, usuario.getCorreo());
+=======
+            stmt.setString(1, usuario.getNombre());
+            stmt.setString(3, usuario.getCorreo());
+>>>>>>> main
             stmt.setString(4, usuario.getTelefono());
             stmt.setString(5, usuario.getPassword());
             stmt.setInt(6, usuario.getIdUsuario());
@@ -181,7 +190,11 @@ public class UsuarioDAO {
         UsuarioModel usuario = new UsuarioModel();
         usuario.setIdUsuario(rs.getInt("idUsuario"));
         usuario.setNombre(rs.getString("nombre"));
+<<<<<<< HEAD
         usuario.setCorreo(rs.getString("correo"));
+=======
+        usuario.setCorreo(rs.getString("email"));
+>>>>>>> main
         usuario.setTelefono(rs.getString("telefono"));
         usuario.setPassword(rs.getString("password"));
         return usuario;
