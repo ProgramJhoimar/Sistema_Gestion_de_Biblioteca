@@ -18,8 +18,9 @@ import Util.CaptchaGenerator;
 public class LoginServlet extends HttpServlet {
 
     /**
-     * Handles the HTTP <code>GET</code> method.
-     * Muestra la página de login con CAPTCHA
+     * Handles the HTTP <code>GET</code> method. Muestra la página de login con
+     * CAPTCHA
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -39,14 +40,13 @@ public class LoginServlet extends HttpServlet {
 //
 //        // Enviar la imagen del CAPTCHA a la página JSP
 //        request.setAttribute("captchaImage", captchaImage);
-
         // Redirigir a la página de login
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/Views/login.jsp").forward(request, response);
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     * Procesa el inicio de sesión
+     * Handles the HTTP <code>POST</code> method. Procesa el inicio de sesión
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -56,8 +56,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        
         String username = request.getParameter("username");  // Nombre del campo del formulario
         String password = request.getParameter("password");  // Nombre del campo del formulario
 
@@ -87,15 +85,12 @@ public class LoginServlet extends HttpServlet {
         System.out.println("Usuario ingresado: " + username);
         System.out.println("Contraseña ingresada: " + password);
 
-
         if (usuario != null) {
             // Login exitoso
             session.setAttribute("usuario", usuario);
-           
             session.setAttribute("usuarioNombre", usuario.getNombre());
-
             // Redirigir al dashboard
-            response.sendRedirect(request.getContextPath() + "/dashboard");
+            request.getRequestDispatcher("/Views/dashboard.jsp").forward(request, response);
             System.out.println("Correcto");
         } else {
             // Login fallido
@@ -106,13 +101,13 @@ public class LoginServlet extends HttpServlet {
 //            String nuevoCaptchaImage = CaptchaGenerator.generarImagenCaptcha(nuevoCaptchaText);
 //            session.setAttribute("captchaText", nuevoCaptchaText);
 //            request.setAttribute("captchaImage", nuevoCaptchaImage);
-
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/Views/login.jsp").forward(request, response);
         }
     }
 
     /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

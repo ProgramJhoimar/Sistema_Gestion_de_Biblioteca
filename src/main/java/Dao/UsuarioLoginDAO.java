@@ -18,7 +18,7 @@ public class UsuarioLoginDAO {
         try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, username); // Puede ser email
-            ps.setString(3, password); // Verifica que sea igual al de la BD
+            ps.setString(2, password); // Verifica que sea igual al de la BD
 
             ResultSet rs = ps.executeQuery();
 
