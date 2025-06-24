@@ -1,122 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Iniciar Sesi贸n - Biblioteca</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesi髇 - Biblioteca</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .login-card {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 20px;
-            border-radius: 10px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: #333;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo-container img {
-            max-width: 150px;
+        .login-card .form-control {
+            border-radius: 10px;
         }
         .login-title {
-            text-align: center;
-            margin-bottom: 20px;
             color: #0d6efd;
-        }
-        .captcha-container {
-            margin-bottom: 15px;
+            font-weight: bold;
+            margin-bottom: 25px;
             text-align: center;
         }
-        .captcha-img {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            max-width: 100%;
-            margin-bottom: 10px;
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
         }
-        .btn-refresh {
-            color: #0d6efd;
-            cursor: pointer;
-            font-size: 20px;
-            text-decoration: none;
-        }
-        .btn-refresh:hover {
-            color: #0a58ca;
+        .btn-primary:hover {
+            background-color: #0b5ed7;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="login-card">
 
-        <div class="logo-container">
-            <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="Logo Biblioteca" class="img-fluid">
+<div class="login-card">
+
+    <div class="text-center mb-4">
+        <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="Logo Biblioteca" class="img-fluid" style="max-width: 120px;">
+    </div>
+
+    <h2 class="login-title">Iniciar Sesi髇</h2>
+
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger">${error}</div>
+    </c:if>
+
+    <form action="${pageContext.request.contextPath}/login" method="post" autocomplete="off">
+        <div class="mb-3">
+            <label for="username" class="form-label">Correo o Usuario</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username">
+            </div>
         </div>
 
-        <h2 class="login-title">Iniciar Sesi贸n</h2>
-
-        <c:if test="${not empty error}">
-            <div class="alert alert-danger" role="alert">${error}</div>
-        </c:if>
-
-        <form action="${pageContext.request.contextPath}/login" method="post" autocomplete="off">
-            <div class="mb-3">
-                <label for="username" class="form-label">Correo o Usuario</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username">
-                </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contrase馻</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Contrase帽a</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
-                </div>
-            </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">C贸digo de Seguridad</label>
-                <div class="captcha-container">
-                    <c:if test="${not empty captchaImage}">
-                        <img src="${captchaImage}" alt="CAPTCHA" class="captcha-img">
-                    </c:if>
-                    <c:if test="${empty captchaImage}">
-                        <p class="text-danger">No se pudo generar el CAPTCHA</p>
-                    </c:if>
-                    <br>
-                    <a href="${pageContext.request.contextPath}/login" class="btn-refresh" title="Generar nuevo CAPTCHA">
-                        <i class="fas fa-sync-alt"></i>
-                    </a>
+        <div class="d-grid">
+            <a href="FormularioRegistro.jsp" class="btn btn-btn-outline-primary">Registrarse</a>
+        </div>
+    </form>
 
-                    </a>
-                </div>
-                <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Escribe el c贸digo de la imagen" required autocomplete="off">
-            </div>
-
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Ingresar</button>
-            </div>
-        </form>
-
-    </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

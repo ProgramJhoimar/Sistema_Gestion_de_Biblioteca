@@ -11,24 +11,23 @@ package Dto;
 public class UsuarioModel {
 
     private int idUsuario;
-    private String perfil;
-    private String nombre;
-    private String apellido;
+    private String documento;
+    public String nombre;
     private String telefono;
-    private String email;
+    private String correo;
     private String password;
 
 
     public UsuarioModel() {
     }
 
-    public UsuarioModel(String password, String email, String telefono, String apellido, String nombre, String perfil, int idUsuario) {
+    public UsuarioModel(String password, String correo, String telefono,String nombre, int idUsuario, String documento) {
         this.password = password;
-        this.email = email;
+        this.correo = correo;
         this.telefono = telefono;
-        this.apellido = apellido;
         this.nombre = nombre;
-        this.perfil = perfil;
+        this.documento = documento;
+  
         this.idUsuario = idUsuario;
     }
 
@@ -40,12 +39,12 @@ public class UsuarioModel {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getTelefono() {
@@ -55,15 +54,6 @@ public class UsuarioModel {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -71,15 +61,13 @@ public class UsuarioModel {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getPerfil() {
-        return perfil;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
-
     public int getIdUsuario() {
         return idUsuario;
     }

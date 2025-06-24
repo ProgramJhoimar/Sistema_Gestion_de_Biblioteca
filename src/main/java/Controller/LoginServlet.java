@@ -29,16 +29,16 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Generar un nuevo CAPTCHA para el formulario de login
-        String captchaText = CaptchaGenerator.generarTextoCaptcha();
-        String captchaImage = CaptchaGenerator.generarImagenCaptcha(captchaText);
-
-        // Guardar el texto del CAPTCHA en la sesión para validarlo después
-        HttpSession session = request.getSession();
-        session.setAttribute("captchaText", captchaText);
-
-        // Enviar la imagen del CAPTCHA a la página JSP
-        request.setAttribute("captchaImage", captchaImage);
+//        // Generar un nuevo CAPTCHA para el formulario de login
+//        String captchaText = CaptchaGenerator.generarTextoCaptcha();
+//        String captchaImage = CaptchaGenerator.generarImagenCaptcha(captchaText);
+//
+//        // Guardar el texto del CAPTCHA en la sesión para validarlo después
+//        HttpSession session = request.getSession();
+//        session.setAttribute("captchaText", captchaText);
+//
+//        // Enviar la imagen del CAPTCHA a la página JSP
+//        request.setAttribute("captchaImage", captchaImage);
 
         // Redirigir a la página de login
         request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -57,29 +57,32 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String captchaIngresado = request.getParameter("captcha");
+        
+        String username = request.getParameter("username");  // Nombre del campo del formulario
+        String password = request.getParameter("password");  // Nombre del campo del formulario
 
+//        String captchaIngresado = request.getParameter("captcha");
+//
         HttpSession session = request.getSession();
-        String captchaReal = (String) session.getAttribute("captchaText");
-
-        // Validar CAPTCHA
-        if (!CaptchaGenerator.validarCaptcha(captchaIngresado, captchaReal)) {
-            request.setAttribute("error", "El código CAPTCHA ingresado es incorrecto");
-
-            // Generar un nuevo CAPTCHA
-            String nuevoCaptchaText = CaptchaGenerator.generarTextoCaptcha();
-            String nuevoCaptchaImage = CaptchaGenerator.generarImagenCaptcha(nuevoCaptchaText);
-            session.setAttribute("captchaText", nuevoCaptchaText);
-            request.setAttribute("captchaImage", nuevoCaptchaImage);
-
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-            return;
-        }
+//        String captchaReal = (String) session.getAttribute("captchaText");
+//
+//        // Validar CAPTCHA
+//        if (!CaptchaGenerator.validarCaptcha(captchaIngresado, captchaReal)) {
+//            request.setAttribute("error", "El código CAPTCHA ingresado es incorrecto");
+//
+//            // Generar un nuevo CAPTCHA
+//            String nuevoCaptchaText = CaptchaGenerator.generarTextoCaptcha();
+//            String nuevoCaptchaImage = CaptchaGenerator.generarImagenCaptcha(nuevoCaptchaText);
+//            session.setAttribute("captchaText", nuevoCaptchaText);
+//            request.setAttribute("captchaImage", nuevoCaptchaImage);
+//
+//            request.getRequestDispatcher("/login.jsp").forward(request, response);
+//            return;
+//        }
 
         // Validar credenciales
-        UsuarioLoginDAO usuarioDAO = new UsuarioLoginDAO();
+        UsuarioLoginDAO usuarioDAO;
+        usuarioDAO = new UsuarioLoginDAO();
         UsuarioModel usuario = usuarioDAO.validarLogin(username, password);
         System.out.println("Usuario ingresado: " + username);
         System.out.println("Contraseña ingresada: " + password);
@@ -88,20 +91,21 @@ public class LoginServlet extends HttpServlet {
         if (usuario != null) {
             // Login exitoso
             session.setAttribute("usuario", usuario);
-            session.setAttribute("usuarioId", usuario.getIdUsuario());
+           
             session.setAttribute("usuarioNombre", usuario.getNombre());
 
             // Redirigir al dashboard
             response.sendRedirect(request.getContextPath() + "/dashboard");
+            System.out.println("Correcto");
         } else {
             // Login fallido
             request.setAttribute("error", "Credenciales incorrectas");
-
-            // Generar un nuevo CAPTCHA
-            String nuevoCaptchaText = CaptchaGenerator.generarTextoCaptcha();
-            String nuevoCaptchaImage = CaptchaGenerator.generarImagenCaptcha(nuevoCaptchaText);
-            session.setAttribute("captchaText", nuevoCaptchaText);
-            request.setAttribute("captchaImage", nuevoCaptchaImage);
+//
+//            // Generar un nuevo CAPTCHA
+//            String nuevoCaptchaText = CaptchaGenerator.generarTextoCaptcha();
+//            String nuevoCaptchaImage = CaptchaGenerator.generarImagenCaptcha(nuevoCaptchaText);
+//            session.setAttribute("captchaText", nuevoCaptchaText);
+//            request.setAttribute("captchaImage", nuevoCaptchaImage);
 
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
