@@ -8,7 +8,7 @@
     
     <!-- Configuración de bienvenida -->
     <welcome-file-list>
-        <welcome-file>LibroServlet</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     
     <!-- Configuración de sesión -->

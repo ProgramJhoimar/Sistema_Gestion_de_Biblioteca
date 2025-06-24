@@ -33,10 +33,18 @@ public class LibroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<LibroModel> librosDisponibles = libroDao.listarDisponibles();
-        request.getSession().setAttribute("listaLibrosDisponibles", librosDisponibles);
-        response.sendRedirect("index.jsp");
 
+        String action = request.getParameter("action");
+
+        if ("iniciar".equals(action)) {
+            List<LibroModel> librosDisponibles = libroDao.listarDisponibles();
+            request.getSession().setAttribute("listaLibrosDisponibles", librosDisponibles);
+            response.sendRedirect("index.jsp?loaded=true");
+        } else if ("pendientes".equals(action)) {
+            List<LibroModel> librosPrestados = libroDao.listaPrestados();
+            request.getSession().setAttribute("librosPrestados", librosPrestados);
+            response.sendRedirect("/Views/dashboard.jsp");
+        }
     }
 
     @Override
@@ -44,5 +52,4 @@ public class LibroServlet extends HttpServlet {
             throws ServletException, IOException {
 
     }
-
 }

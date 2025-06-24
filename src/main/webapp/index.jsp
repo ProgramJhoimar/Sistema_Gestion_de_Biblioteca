@@ -4,6 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="es">
+    <script>
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.has('loaded')) {
+                window.location.href = "<%= request.getContextPath()%>/LibroServlet?action=iniciar";
+            }
+        };
+    </script>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +79,8 @@
             </div>
         </div>
 
-        <div class="container my-5" id="libros">
+
+        <div class="container my-5" id="libros"  >
             <h2 class="text-center mb-4 text-white">Libros Disponibles</h2>
 
             <div class="row">
@@ -99,10 +109,14 @@
             </div>
         </div>
 
+
+
         <footer>
             &copy; 2025 Biblioteca Virtual | Sistema de Gestión
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
     </body>
 </html>

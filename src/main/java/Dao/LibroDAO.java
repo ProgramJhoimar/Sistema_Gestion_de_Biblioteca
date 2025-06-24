@@ -32,7 +32,7 @@ public class LibroDAO {
         List<LibroModel> librosDisponibles = new ArrayList<>();
         try {
             connection = Conexion.getConnection();
-            stmt = connection.prepareStatement("CALL sp_ListarDisponibles()");
+            stmt = connection.prepareStatement("SELECT * FROM libros WHERE libros.estado = 'Disponible'");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -55,6 +55,35 @@ public class LibroDAO {
         System.out.println("lista" + librosDisponibles);
         return librosDisponibles;
     }
+
+    public List<LibroModel> listaPrestados() {
+        List<LibroModel> lsP = new ArrayList<>();
+
+        try {
+            connection = Conexion.getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM libros WHERE libros.estado = 'Prestado'");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                LibroModel lb = mapeoLibro(rs);
+                lsP.add(lb);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener la lista en Modelo: " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                Conexion.closeConnection(connection);
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar la conexión de Modelo: " + ex.getMessage());
+            }
+        }
+        return lsP;
+    }
+    
+    
 
     private LibroModel mapeoLibro(ResultSet rs) throws SQLException {
         LibroModel libro = new LibroModel();
